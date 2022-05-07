@@ -35,22 +35,22 @@ export default function TextForm(props) {
 
     return (
         <>
-            <div className="container">
+            <div className="container" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
                 <h1>{props.heading}</h1>
                 <div className="mb-3">
-                    <textarea className="form-control" id="myBox" value={text} onChange={handlingOnChange} rows="8" />
+                    <textarea className="form-control" id="myBox" style={{ backgroundColor: props.mode === 'dark' ? '#212529' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} value={text} onChange={handlingOnChange} rows="8" />
                 </div>
                 <button type="button" className="btn btn-success" onClick={upHandling} >UpperCase</button>
                 <button type="button" className="btn btn-warning ms-3" onClick={lwHandling} >LowerCase</button>
                 <button type="button" className="btn btn-secondary ms-3" onClick={copyHandling} >Copy</button>
                 <button type="button" className="btn btn-primary ms-3" onClick={clHandling} >Reset</button>
             </div>
-            <div className="container my-3">
+            <div className="container my-3" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
                 <h2>Your text summary</h2>
                 <p>{text.trim().split(/\s+/).length} characters and {text.length} words</p>
                 <p>{0.08 * text.split(" ").length} minutes to read this!</p>
                 <h2>Preview</h2>
-                <p>{text}</p>
+                <p>{text.length < 1 ? "Enter your text in the above text Box to preview it here" : text}</p>
             </div>
         </>
     )
