@@ -8,14 +8,29 @@ export default function TextForm(props) {
     const upHandling = () => {
         let newText = text.toUpperCase();
         setText(newText);
+        if (text === "") {
+            props.showAlert("Please enter your text in TextArea below!", "warning", "Warning")
+        } else {
+            props.showAlert("Converted to Uppercase!", "success", "Successful")
+        }
     }
     const lwHandling = () => {
         let newText = text.toLowerCase();
         setText(newText);
+        if (text === "") {
+            props.showAlert("Please enter your text in TextArea below!", "warning", "Warning")
+        } else {
+            props.showAlert("Converted to Lowercase!", "success", "Successful")
+        }
     }
     const clHandling = () => {
         let newText = "";
         setText(newText);
+        if (text === "") {
+            props.showAlert("Please enter your text in TextArea below!", "warning", "Warning")
+        } else {
+            props.showAlert("Cleared the text!", "success", "Successful")
+        }
     }
     const copyHandling = () => {
         // let newText = text;
@@ -26,6 +41,11 @@ export default function TextForm(props) {
 
         /* Copy the text inside the text field */
         navigator.clipboard.writeText(newText.value);
+        if (text === "") {
+            props.showAlert("You haven't entered any text in the Text Area!", "primary", "Alert")
+        } else {
+            props.showAlert("Copied to clipboard!", "success", "Successful")
+        }
     }
 
     const handlingOnChange = (event) => {
