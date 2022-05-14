@@ -1,9 +1,14 @@
 import './App.css';
-// import About from './components/About';
+import About from './components/About';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 import React, { useState } from 'react';
 import Alert from './components/Alert';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
 
 
 function App() {
@@ -31,20 +36,26 @@ function App() {
       setmode('light')
       document.body.style.backgroundColor = "white";
       showAlert("Enabled Light Mode", "success", "Successful");
+      document.title = "TextUtils | LightMode";
     }
   }
   return (
     <>
       {/* <Navbar link="About Us" anotherLink="Contact" /> */}
-      <Navbar link="About Us" anotherLink="Contact" mode={mode} toggleMode={toggleMode} />
-      <Alert alert={alert} />
       {/* <Navbar /> */} {/* example for proptypes */}
-      <div className="container my-3">  {/*to know "my-3" check in bootstrap, spacing doc*/}
-        <TextForm showAlert={showAlert} heading="Type Here!" mode={mode} />
-        {/* <About /> */}
-      </div>
+      <Router>
+        <Navbar link="About Us" anotherLink="Contact" mode={mode} toggleMode={toggleMode} />
+        <Alert alert={alert} />
+        <div className="container my-3">  {/*to know "my-3" check in bootstrap, spacing doc*/}
+          <Routes>
+            <Route exact path="/about" element={<About />} />
+            <Route exact path="/" element={<TextForm showAlert={showAlert} heading="Type Here!" mode={mode} />} />
+          </Routes>
+        </div>
+      </Router>
     </>
   );
 }
 
-export default App; 
+export default App;
+// react router : npm install react-router-dom 
